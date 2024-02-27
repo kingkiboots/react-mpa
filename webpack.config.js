@@ -174,34 +174,6 @@ module.exports = (env, argv) => ({
       "process.env.REACT_APP_API_WAS_IP": JSON.stringify(
         process.env.REACT_APP_API_WAS_IP
       ),
-      "process.env.REACT_APP_CLIENT_IP": JSON.stringify(
-        process.env.REACT_APP_CLIENT_IP
-      ),
-      "process.env.REACT_APP_SECRET_KEY": JSON.stringify(
-        process.env.REACT_APP_SECRET_KEY
-      ),
-      "process.env.REACT_APP_IV": JSON.stringify(process.env.REACT_APP_IV),
-      "process.env.REACT_APP_CDN_IMAGE_BASE_HREF": JSON.stringify(
-        process.env.REACT_APP_CDN_IMAGE_BASE_HREF
-      ),
-      "process.env.REACT_APP_BASE_HREF": JSON.stringify(
-        process.env.REACT_APP_BASE_HREF
-      ),
-      "process.env.PUBLIC_URL": JSON.stringify(process.env.PUBLIC_URL),
-      "process.env.REACT_APP_HPA_SECRET_KEY": JSON.stringify(
-        process.env.REACT_APP_HPA_SECRET_KEY
-      ),
-      "process.env.REACT_APP_HPA_IV": JSON.stringify(
-        process.env.REACT_APP_HPA_IV
-      ),
-      // 2023-08-24 환경 변수 추가
-      "process.env.REACT_APP_BUILD_VERSION": JSON.stringify(
-        process.env.REACT_APP_BUILD_VERSION
-      ),
-      // 2023-09-01 환경 변수 추가
-      "process.env.REACT_APP_PAY_GATEWAY": JSON.stringify(
-        process.env.REACT_APP_PAY_GATEWAY
-      ),
     }),
     /* {6-6-3} */
     // WebpackObfuscator:
