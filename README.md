@@ -1,3 +1,8 @@
+# React 로 MPA(Multi Page Application) 구현하기
+> 어,,, 근데 아직 예제 소스코드를 만들지는 못해서요...
+> 그래도 빌드 설정은 있으니깐 필요하신 분들은 package.json과 webpack.config.js를 보시면 됩니다!
+> 부지런히 작업하도록 하겠습니다!
+
 ### src/view/layout/ 각 화면별 html 분리(SPA -> MPA)
 
 makePages/에 있는 makePages.js를 실행하여 src/pages/에 화면별 js, html 파일을 생성해야한다.
