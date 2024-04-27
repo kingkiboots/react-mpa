@@ -85,11 +85,8 @@ const PUBLIC_URL = process.env.PUBLIC_URL || "";
 const REACT_APP_BASE_HREF = process.env.REACT_APP_BASE_HREF ?? PUBLIC_URL;
 const isLocal = process.env.REACT_APP_ACTIVE === "LOCAL";
 const isDev = process.env.REACT_APP_ACTIVE === "DEV";
-// const isStaging = process.env.REACT_APP_ACTIVE === 'STG';
-
-// 2023-10-24 TEST
-const isNodeEnvProduction = process.env.NODE_ENV === "production";
-// const isNodeEnvProduction = true;
+// const isStg = process.env.REACT_APP_ACTIVE === 'STG';
+const isProd = process.env.NODE_ENV === "production";
 /**
  * {4}
  * 2023-09-06 크로스 플랫폼의 경우 경로 설정에 '\\' 사용하면 문제 발생으로 코드 수정
@@ -102,7 +99,6 @@ const htmlPlugins = getFilesFromDir(PAGE_DIR, [".html"]).map((filePath) => {
     //chunks: [fileName.replace(path.extname(fileName), '').replace(PAGE_DIR, '').split('\\').pop(), 'vendor'],
     chunks: [baseName, "vendor"],
     template: filePath,
-    //filename: fileName.split('\\').pop()
     filename: path.basename(filePath),
   });
 });
@@ -161,7 +157,7 @@ module.exports = (env, argv) => ({
     filename: "[name].[chunkhash].js",
   },
   /* {6-5} */
-  devtool: isNodeEnvProduction ? false : "eval-source-map",
+  devtool: isProd ? false : "eval-source-map",
   /* {6-6} */
   plugins: [
     /* {6-6-1} */
@@ -210,10 +206,7 @@ module.exports = (env, argv) => ({
     alias: {
       /* {6-7-1} */
       src: path.resolve(__dirname, "src"),
-      view: path.resolve(__dirname, "src", "view"),
-      common: path.resolve(__dirname, "src", "common"),
-      util: path.resolve(__dirname, "src", "util"),
-      api: path.resolve(__dirname, "src", "api"),
+      components: path.resolve(__dirname, "src", "components"),
     },
     /* {6-7-2} */
     extensions: [".js", ".jsx"],
@@ -228,7 +221,7 @@ module.exports = (env, argv) => ({
           loader: "babel-loader",
           options: {
             /* {6-7-4} */
-            // babelrc: isStaging,
+            // babelrc: isStg,
             babelrc: !(isDev || isLocal),
             presets: [
               [
@@ -297,7 +290,7 @@ module.exports = (env, argv) => ({
   /* {6-8} */
   optimization: {
     /* {6-8-1} */
-    minimize: isNodeEnvProduction,
+    minimize: isProd,
     minimizer: [
       /* {6-8-2} */
       new TerserPlugin({
@@ -308,7 +301,7 @@ module.exports = (env, argv) => ({
           ecma: 5,
           /* {6-8-2-2} */
           // compress: {
-          //   drop_console: isStaging
+          //   drop_console: isStg
           // },
           /* {6-8-2-3} */
           output: {
@@ -331,6 +324,6 @@ module.exports = (env, argv) => ({
   },
   /* {6-9} */
   performance: {
-    hints: isNodeEnvProduction ? "warning" : false,
+    hints: isProd ? "warning" : false,
   },
 });
